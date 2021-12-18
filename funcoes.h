@@ -16,7 +16,7 @@
 struct MatrizQuadrada{
     int dimensao;
     int** m1;
-    
+
 };
 
 void leMatriz(MatrizQuadrada &m1){
@@ -67,7 +67,7 @@ void criaMatrizIdentidade(MatrizQuadrada &m1, int n){
     }
 }
 
-void soma(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada m3){
+void soma(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3){
     int *dimensao = &m1.dimensao;
     m3.dimensao = m1.dimensao;
     m3.m1 = new int*[*dimensao];
@@ -97,7 +97,7 @@ void criaTransposta(MatrizQuadrada m1, MatrizQuadrada m2){
     imprimeMatriz(m2);
 }
 
-void produto(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada m3){
+void produto(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3){
     int *dimensao = &m1.dimensao;
     m3.m1 = new int*[*dimensao];
     for(int i = 0; i < *dimensao;i++){
