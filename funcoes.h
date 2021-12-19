@@ -125,3 +125,8 @@ bool compara(MatrizQuadrada m1, MatrizQuadrada m2){
     }
     return true;
 }
+
+void desaloca(MatrizQuadrada m1){
+    delete [] m1.m1;
+    
+}

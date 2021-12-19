@@ -34,6 +34,7 @@
 using namespace std;
 
 
+
 int main(void){
     MatrizQuadrada M1, M2, M3, I, R, T;
     leMatriz(M1);
@@ -52,5 +53,10 @@ int main(void){
     soma(R, M2, M3);
     imprimeMatriz(M2);
     imprimeMatriz(M3);
-    
+    desaloca(M1);
+    desaloca(M2);
+    desaloca(M3);
+    desaloca(I);
+    desaloca(R);
+
 }
