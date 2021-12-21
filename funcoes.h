@@ -3,8 +3,8 @@
 *******************************************************************************************
 *   Arquivo com parte das funções referentes ao Trabalho 1 - INF 112 (2021/PHT)
 *   
-*   Criado por: Gabriel Theophilo de Souza Figueira - gabriel.figueira@ufv.br
-*   Para informações adicionais de documentação (geral), acesse o arquivo doc.md
+*   Criado por: Gabriel Theophilo de Souza Figueira - gabriel.figueira@ufv.br - es99198
+*   
 *   
 *   16/12/2021
 *******************************************************************************************
@@ -19,114 +19,30 @@ struct MatrizQuadrada{
 
 };
 
-void leMatriz(MatrizQuadrada &m1){
-    std::cin >> m1.dimensao;
-    m1.m1 = new int*[m1.dimensao];
-    for(int i = 0; i < m1.dimensao;i++){
-        m1.m1[i] = new int[m1.dimensao];
-    }
-    for(int i = 0; i < m1.dimensao;i++){
-        for(int j = 0; j < m1.dimensao;j++){
-            std::cin >> m1.m1[i][j];
-            
-        }
-    }
-}
+//recebe como input uma dimensão para a matriz e aloca recursos na memória para uma dimensão,
+//e em cada dimensão aloca recursos para uma variável receber uma quantidade de elementos correspondente a dimensão, formando assim uma matriz quadrada
+void leMatriz(MatrizQuadrada &m1);
 
-void imprimeMatriz(MatrizQuadrada m1){
-    std::cout << m1.dimensao << std::endl;
-    for(int i = 0; i < m1.dimensao;i++){
-        for(int j = 0; j < m1.dimensao;j++){
-            std::cout << m1.m1[i][j] << " ";
-        }
-        std::cout << '\n';
-    }
-}
 
-void criaMatrizIdentidade(MatrizQuadrada &m1, int n){
 
-    m1.m1 = new int*[n];
-    for(int i = 0; i < n;i++){
-        m1.m1[i] = new int[n];
-    }
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < n; j++){
-            if(i==j){
-                m1.m1[i][j] = 1;
-            }
-            else{
-                m1.m1[i][j] = 0;
-            }
-        }
-    }
-    for(int i = 0; i < n;i++){
-        for(int j = 0; j < n;j++){
-            std::cout << m1.m1[i][j] << " ";
-        }
-        std::cout << '\n';
-    }
-}
+//percorre a matriz selecionada imprimindo cada membro individualmente
+void imprimeMatriz(MatrizQuadrada m1);
 
-void soma(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3){
-    int *dimensao = &m1.dimensao;
-    m3.dimensao = m1.dimensao;
-    m3.m1 = new int*[*dimensao];
-        for(int i = 0; i < *dimensao;i++){
-            m3.m1[i] = new int[*dimensao];
-        }
-    for(int i = 0; i < *dimensao;i++){
-        for(int j = 0; j < *dimensao;j++){
-            m3.m1[i][j] = m1.m1[i][j] + m2.m1[i][j];
-        }
-    }
-    imprimeMatriz(m3);
-}
+//função recebe por referência o objeto de uma matriz para alocar recursos a ela e recebe também um inteiro representando o número de espaços que serão utilizados
+void criaMatrizIdentidade(MatrizQuadrada &m1, int n);
 
-void criaTransposta(MatrizQuadrada m1, MatrizQuadrada m2){
-    int *dimensao = &m1.dimensao;
-    m2.dimensao = m1.dimensao;
-    m2.m1 = new int*[*dimensao];
-    for(int i = 0; i < *dimensao;i++){
-            m2.m1[i] = new int[*dimensao];
-    }
-    for(int i = 0; i < *dimensao;i++){
-        for(int j = 0; j < *dimensao;j++){
-            m2.m1[i][j] = m1.m1[j][i];
-        }
-    }
-    imprimeMatriz(m2);
-}
+//função recebe por referência o objeto de uma terceira matriz para alocar recursos a ela e realizar a soma das duas primeiras matrizes fornecidas
+void soma(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3);
 
-void produto(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3){
-    int *dimensao = &m1.dimensao;
-    m3.m1 = new int*[*dimensao];
-    for(int i = 0; i < *dimensao;i++){
-            m3.m1[i] = new int[*dimensao];
-    }
-    for(int i = 0; i < *dimensao;i++){
-        for(int j = 0; j < *dimensao;j++){
-            for(int k = 0; k < *dimensao;k++){
-                m3.m1[i][j] += m1.m1[i][k]*m2.m1[k][j];
-            }
-        }
-    }
-    m3.dimensao = m1.dimensao;
-    imprimeMatriz(m3);
-}
+//função aloca dinamicamente recursos para uma segunda matriz e copia os elementos da primeira de forma a criar uma transposta -> linha 139 - o elemento linhaXcoluna da receptora recebe o elemento da colunaXlinha da primeira matriz
+void criaTransposta(MatrizQuadrada m1, MatrizQuadrada m2);
 
-bool compara(MatrizQuadrada m1, MatrizQuadrada m2){
-    int* dimensao = &m1.dimensao;
-    for(int i=0; i<*dimensao; i++){
-        for(int j=0; j<*dimensao; j++){
-            if(m1.m1[i][j] != m2.m1[i][j]){
-                return false;
-            }
-        }
-    }
-    return true;
-}
+//função recebe por referência o objeto de uma terceira matriz para alocar recursos a ela e realizar a multiplicação das duas primeiras matrizes fornecidas
+void produto(MatrizQuadrada m1, MatrizQuadrada m2, MatrizQuadrada &m3);
 
-void desaloca(MatrizQuadrada m1){
-    delete [] m1.m1;
-    
-}
+//função utiliza dois loops aninhados para comparar cada posição de uma matriz com a posição correspondente de outra matriz
+bool compara(MatrizQuadrada m1, MatrizQuadrada m2);
+
+
+//desaloca os recursos alocados dinamicamente para a instância que guarda 
+void desaloca(MatrizQuadrada m1);
