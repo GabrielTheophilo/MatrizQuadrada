@@ -3,7 +3,7 @@
 *******************************************************************************************
 *   Arquivo com parte das funções referentes ao Trabalho 1 - INF 112 (2021/PHT)
 *   
-*   Criado por: Gabriel Theophilo de Souza Figueira - gabriel.figueira@ufv.br - es99198
+*   Criado por: Gabriel Theophilo de Souza Figueira - gabriel.figueira@ufv.br
 *   
 *   
 *   16/12/2021
